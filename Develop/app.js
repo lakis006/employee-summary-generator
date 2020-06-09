@@ -32,13 +32,13 @@ function managerPrompt() {
             type: "input",
             name: "office number",
             message: "Please enter your office number"
-        },
-    ]).then(function (input) {
-        const newManager = new Manager(input.name, input.id, input.office)
-        addMember()
-    })
+        }])
 };
 
+
+function generateTeam() {
+    
+}
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
