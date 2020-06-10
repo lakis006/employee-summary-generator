@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer"); // pass in info as an argument to the render functions after getting all data 
 
 
 function managerPrompt() {
@@ -35,10 +35,22 @@ function managerPrompt() {
         }])
 };
 
+managerPrompt().then (
+    function newMember() {
+        return inquirer.prompt([
+            {
+                type: "list",
+                name: "newEmployee",
+                message: "Please enter the role of this employee",
+                choices: ["Intern", "Engineer", "All Done!"]
+            }
+        ]);
+    }
+)
 
-function generateTeam() {
-    
-}
+
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
