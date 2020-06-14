@@ -10,43 +10,26 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer"); // pass in info as an argument to the render functions after getting all data 
 
+const teamName = [{
+    type: "input",
+    name: "teamName",
+    message: "What's the name of your team"
+}]
 
-function managerPrompt() {
-    return inquirer.prompt([
-        {
-            type: "input",
-            name: "the manager",
-            message: "Please enter the name of the manager"
-        },
-        {
-            type: "input",
-            name: "manager id",
-            message: "Please enter the ID of the manager"
-        },
-        {
-            type: "input",
-            name: "manager email",
-            message: "Please enter your email"
-        },
-        {
-            type: "input",
-            name: "office number",
-            message: "Please enter your office number"
-        }])
-};
+const memberTypePrompt = [{
+    type: "list",
+    message: "Team Member Type",
+    name: "memberType",
+    choices: [
+        "Intern",
+        "Manager",
+        "Engineer"
+    ]
+}]
 
-managerPrompt().then (
-    function newMember() {
-        return inquirer.prompt([
-            {
-                type: "list",
-                name: "newEmployee",
-                message: "Please enter the role of this employee",
-                choices: ["Intern", "Engineer", "All Done!"]
-            }
-        ]);
-    }
-)
+const employeePrompt = [{
+    
+}]
 
 
 
