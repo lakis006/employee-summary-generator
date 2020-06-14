@@ -18,4 +18,4 @@ getGithub() {
 
 }
 
-const Engineer
+module.exports = Engineer;
