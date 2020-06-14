@@ -74,7 +74,7 @@ const main = async () => {
 
     const htmlBlock = await render(team);
 
-    fs.writeFile(outPath, htmlBlock, function (err) {
+    fs.writeFile(outputPath, htmlBlock, function (err) {
         if (err) {
             return console.log("It failed to write to the file ")
         }
@@ -164,7 +164,8 @@ const buildManager = (m) => {
     team.push(person);
 }
 const buildIntern = (m) => {
-    const person = new Intern(m.name, m.id, m.email, m.school)
+    const person = new Intern(m.name, m.id, m.email, m.school);
+    team.push(person);
 }
 
 main();
