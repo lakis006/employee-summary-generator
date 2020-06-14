@@ -1,4 +1,4 @@
-# employee-summary-generator
+# Employee Summary Generator
 
 
 
@@ -15,9 +15,11 @@ This app builds a software engineering team generator command line application. 
 
 
   ## Link to deployed app 
-    https://lakis006.github.io/generated-readme/
+    https://lakis006.github.io/employee-summary-generator/
 
- ## Screenshots
+ ## Screenshot Team.html
   ![program working](screenshot/screenshot1.png) 
+
+## Screenshot Test Passed
    ![program working](screenshot/screenshot2.png) 
 
