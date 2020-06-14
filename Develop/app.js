@@ -31,11 +31,11 @@ const employeePrompt = [{
     type: "input",
     name: "name",
     message: "What's the name of team member?"
-},{
+}, {
     type: "input",
     name: "id",
     message: "What's the ID of team member?"
-},{
+}, {
     type: "input",
     name: "email",
     message: "What's the email of the team member?"
@@ -68,7 +68,7 @@ const team = [];
 // for the provided `render` function to work! ```
 
 const main = async () => {
-//write code to use inquirer to gather information about the development 
+    //write code to use inquirer to gather information about the development 
 
     await ask();
 
@@ -82,7 +82,7 @@ const main = async () => {
 }
 
 const ask = async (q) => {
-    
+
     var key = await inquirer.prompt(memberTypePrompt);
     var done = "Yes";
     switch (key.memberType) {
@@ -91,7 +91,7 @@ const ask = async (q) => {
                 type: "input",
                 name: "officeNumber",
                 message: "What's the office number"
-            },{
+            }, {
                 type: "list",
                 message: "Are you finished entering team members?",
                 name: "done",
@@ -103,6 +103,68 @@ const ask = async (q) => {
             var a = employeePrompt.concat(toPush);
             var answ = await inquirer.prompt(a);
             done = answ.done;
-            
+            buildManager(answ);
+            break;
+        case "Engineer":
+            var toPush = [{
+                type: "input",
+                name: "github",
+                message: "What's the github user name of the engineer?"
+            }, {
+                type: "list",
+                message: "Are you finished entering team members?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+
+            }]
+            var a = employeePrompt.concat(toPush);
+            var answ = await inquirer.prompt(a);
+            done = answ.done;
+            buildEngineer(answ);
+            break;
+        case "Intern":
+            var toPush = [{
+                type: "input",
+                name: "school",
+                message: "What's the school of the intern?"
+            }, {
+                type: "list",
+                message: "Are you finished entering team members?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+            }]
+            var a = employeePrompt.concat(toPush);
+            var answ = await inquirer.prompt(a);
+            done = answ.done;
+            buildIntern(answ);
+            break
+
+        default:
+            break;
     }
+    if (done === "No") {
+        await ask()
+    }
+
+    return;
 }
+
+const buildEngineer = (m) => {
+    const person = new Engineer(m.name, m.id, m.email, m.github);
+    team.push(person);
+}
+const buildManager = (m) => {
+    const person = new Manager(m.name, m.id, m.email, m.officeNumber);
+    team.push(person);
+}
+const buildIntern = (m) => {
+    const person = new Intern(m.name, m.id, m.email, m.school)
+}
+
+main();
