@@ -28,10 +28,20 @@ const memberTypePrompt = [{
 }]
 
 const employeePrompt = [{
-    
+    type: "input",
+    name: "name",
+    message: "What's the name of team member?"
+},{
+    type: "input",
+    name: "id",
+    message: "What's the ID of team member?"
+},{
+    type: "input",
+    name: "email",
+    message: "What's the email of the team member?"
 }]
 
-
+const team = [];
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -56,3 +66,43 @@ const employeePrompt = [{
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+const main = async () => {
+//write code to use inquirer to gather information about the development 
+
+    await ask();
+
+    const htmlBlock = await render(team);
+
+    fs.writeFile(outPath, htmlBlock, function (err) {
+        if (err) {
+            return console.log("It failed to write to the file ")
+        }
+    })
+}
+
+const ask = async (q) => {
+    
+    var key = await inquirer.prompt(memberTypePrompt);
+    var done = "Yes";
+    switch (key.memberType) {
+        case "Manager":
+            var toPush = [{
+                type: "input",
+                name: "officeNumber",
+                message: "What's the office number"
+            },{
+                type: "list",
+                message: "Are you finished entering team members?",
+                name: "done",
+                choices: [
+                    "Yes",
+                    "No"
+                ]
+            }]
+            var a = employeePrompt.concat(toPush);
+            var answ = await inquirer.prompt(a);
+            done = answ.done;
+            
+    }
+}
